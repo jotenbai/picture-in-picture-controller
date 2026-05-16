@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>画中画控制器</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 12px 14px 14px;
+        min-width: 300px;
+        max-width: 360px;
+        font-size: 13px;
+        line-height: 1.55;
+        color: #202124;
+      }
+      .lang-bar {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e8eaed;
+      }
+      .lang-bar button {
+        flex: 1;
+        padding: 5px 8px;
+        font-size: 12px;
+        border: 1px solid #dadce0;
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+        color: #3c4043;
+      }
+      .lang-bar button:hover {
+        background: #f8f9fa;
+      }
+      .lang-bar button.active {
+        border-color: #1a73e8;
+        background: #e8f0fe;
+        color: #1a73e8;
+        font-weight: 600;
+      }
+      h1 {
+        font-size: 15px;
+        margin: 0 0 10px;
+        font-weight: 600;
+      }
+      h2 {
+        font-size: 13px;
+        margin: 0 0 6px;
+        font-weight: 600;
+      }
+      code {
+        background: #f1f3f4;
+        padding: 1px 4px;
+        border-radius: 3px;
+        font-size: 12px;
+        word-break: break-all;
+      }
+      a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      ol.steps {
+        margin: 0 0 12px;
+        padding-left: 1.25em;
+      }
+      ol.steps li {
+        margin-bottom: 6px;
+      }
+      ol.steps li:last-child {
+        margin-bottom: 0;
+      }
+      ul.shortcuts {
+        margin: 0 0 10px;
+        padding-left: 1.25em;
+      }
+      ul.shortcuts li {
+        margin-bottom: 4px;
+      }
+      .seek-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 10px;
+        padding: 8px 10px;
+        background: #f8f9fa;
+        border-radius: 6px;
+      }
+      .seek-row label {
+        flex: 1;
+        font-size: 12px;
+      }
+      .seek-row input {
+        width: 56px;
+        padding: 4px 6px;
+        border: 1px solid #dadce0;
+        border-radius: 4px;
+        font-size: 13px;
+        text-align: center;
+      }
+      .seek-row span.unit {
+        font-size: 12px;
+        color: #5f6368;
+        min-width: 1.2em;
+      }
+      .note {
+        margin: 0 0 10px;
+        padding: 8px 10px;
+        background: #fff8e6;
+        border-radius: 6px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .shortcuts-link {
+        margin: 0;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="lang-bar" id="lang-bar" aria-label="Language">
+      <button type="button" data-lang="zh">中文</button>
+      <button type="button" data-lang="ja">日本語</button>
+      <button type="button" data-lang="en">English</button>
+    </nav>
+
+    <h1 id="title"></h1>
+
+    <h2 id="how-to-use"></h2>
+    <ol class="steps" id="steps"></ol>
+
+    <h2 id="default-shortcuts"></h2>
+    <ul class="shortcuts">
+      <li><code>Alt+W</code> <span id="shortcut-pip"></span></li>
+      <li><code>Alt+A</code> <span id="shortcut-seek-back"></span></li>
+      <li><code>Alt+S</code> <span id="shortcut-play"></span></li>
+      <li><code>Alt+D</code> <span id="shortcut-seek-forward"></span></li>
+    </ul>
+
+    <div class="seek-row">
+      <label for="seek-seconds" id="seek-label"></label>
+      <input
+        type="number"
+        id="seek-seconds"
+        min="1"
+        max="120"
+        step="1"
+        value="5"
+        inputmode="numeric"
+      />
+      <span class="unit" id="seek-unit"></span>
+    </div>
+
+    <p class="note" id="alt-d-note"></p>
+
+    <p class="shortcuts-link">
+      <a id="shortcuts-link" href="#"></a>
+    </p>
+
+    <script src="popup-i18n.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "manifest_version": 3,
+  "name": "画中画控制器 (PiP Controller)",
+  "version": "1.0",
+  "description": "用快捷键控制 YouTube / Bilibili 画中画：弹出/关闭、暂停、快进/快退。",
+  "permissions": ["scripting", "tabs", "storage"],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.bilibili.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.bilibili.com/*"
+      ],
+      "js": ["content/bridge.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "1-toggle-pip": {
+      "suggested_key": {
+        "default": "Alt+W",
+        "mac": "Alt+W"
+      },
+      "description": "切换画中画（弹出/关闭）"
+    },
+    "2-seek-back": {
+      "suggested_key": {
+        "default": "Alt+A",
+        "mac": "Alt+A"
+      },
+      "description": "快退"
+    },
+    "3-toggle-play": {
+      "suggested_key": {
+        "default": "Alt+S",
+        "mac": "Alt+S"
+      },
+      "description": "暂停 / 播放"
+    },
+    "4-seek-forward": {
+      "suggested_key": {
+        "default": "Alt+D",
+        "mac": "Alt+D"
+      },
+      "description": "快进"
+    }
+  },
+  "action": {
+    "default_title": "画中画控制器",
+    "default_popup": "popup.html"
+  }
+}
