@@ -1,8 +1,8 @@
 # 画中画控制器 (PiP Controller)
 
-**Background hotkeys for Picture-in-Picture on YouTube & Bilibili** — watch tutorials or guides while you play or work in another app, without switching back to the browser tab.
+想一边看教程一边自己操作？即使有两块屏幕，来回切换也挺麻烦——用**全局快捷键在后台控制画中画**，正好解决这个问题。支持 YouTube、bilibili。
 
-[English](#english) · [日本語の概要](#japanese)
+[English](#english)
 
 ---
 
@@ -83,7 +83,7 @@
 
 ## English
 
-**PiP Controller** is a Chrome extension (Manifest V3) that lets you control Picture-in-Picture and playback on **YouTube** and **Bilibili** using **global keyboard shortcuts**, even when another app is in the foreground.
+Want to follow a tutorial while you play or work? Even with two monitors, jumping back to the browser gets old. **PiP Controller** lets you control Picture-in-Picture and playback on **YouTube** and **Bilibili** from the background with global hotkeys—no need to focus the video tab.
 
 ### Default shortcuts
 
@@ -107,10 +107,4 @@ Chrome Web Store listing: **coming later**.
 
 ### Popup
 
-Chinese, Japanese, and English UI; configurable seek step (1–120 seconds, default 5).
-
----
-
-## Japanese
-
-YouTube / bilibili 上の動画を、**グローバルショートカット**でバックグラウンドから PiP 操作（切り替え・再生/一時停止・早送り/巻き戻し）できる Chrome 拡張機能です。ポップアップは日本語対応（中・日・英）。詳細は上記中文・English セクションおよび拡張機能アイコンから開くポップアップを参照してください。
+Popup UI in Chinese, Japanese, and English; configurable seek step (1–120 seconds, default 5).
