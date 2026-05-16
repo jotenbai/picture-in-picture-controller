@@ -1,6 +1,6 @@
 # 画中画控制器 (PiP Controller)
 
-想一边看教程一边自己操作？即使有两块屏幕，来回切换也挺麻烦——用**全局快捷键在后台控制画中画**，正好解决这个问题。支持 YouTube、bilibili。
+边跟教程边在自己用的软件里操作时，视频常常要暂停——却得先切到浏览器按暂停，再切回来，连贯性就被打断。**全局快捷键**可在后台控制画中画与播放（暂停、快进等），无需离开当前窗口。支持 YouTube、bilibili。
 
 [English](#english)
 
@@ -83,7 +83,7 @@
 
 ## English
 
-Want to follow a tutorial while you play or work? Even with two monitors, jumping back to the browser gets old. **PiP Controller** lets you control Picture-in-Picture and playback on **YouTube** and **Bilibili** from the background with global hotkeys—no need to focus the video tab.
+Following a tutorial while you work in another app? You often need to pause—but that means switching to the browser, pressing pause, switching back. **PiP Controller** uses global hotkeys to control Picture-in-Picture and playback on **YouTube** and **Bilibili** from whatever window you're in, so you don't break your flow.
 
 ### Default shortcuts
 
