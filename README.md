@@ -40,9 +40,27 @@
 
 尚未上架。上架后会在本 README 补充商店链接。
 
+### 打包 ZIP（提交商店用）
+
+在项目根目录执行（Windows PowerShell）：
+
+```powershell
+.\package.ps1
+```
+
+会生成 `pip-controller-v<版本号>.zip`（版本号取自 `manifest.json`），内含上架所需的全部运行文件；`manifest.json` 位于 ZIP 根目录。将 ZIP 上传到 [Chrome 开发者控制台](https://chrome.google.com/webstore/devconsole) 即可。
+
+若提示无法运行脚本，可使用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\package.ps1
+```
+
+生成的 `*.zip` 已列入 `.gitignore`，不会提交到 Git。本地开发仍用 **加载已解压的扩展程序** 指向项目根目录，无需先打 ZIP。
+
 ### 关于 `.crx` 打包
 
-可在 `chrome://extensions` 的开发者模式下「打包扩展程序」生成 `.crx`，但 Chrome 已限制普通用户从外部安装 CRX。日常使用请用 **加载已解压的扩展程序**；公开发布请通过 Chrome Web Store。
+可在 `chrome://extensions` 的开发者模式下「打包扩展程序」生成 `.crx`，但 Chrome 已限制普通用户从外部安装 CRX。公开发布请优先使用上方的 `package.ps1` 生成 ZIP 并提交 Chrome 网上应用店。
 
 ## 首次设置
 
@@ -59,8 +77,10 @@
 ```
 ├── manifest.json          # 扩展配置
 ├── background.js          # 快捷键与标签页调度
+├── package.ps1            # 打包 ZIP（Chrome 商店上传）
 ├── popup.html / popup.js  # 弹窗界面
 ├── popup-i18n.js          # 弹窗文案（中 / 日 / 英）
+├── icons/                 # 16 / 32 / 48 / 128 图标
 └── content/
     ├── bridge.js          # 快进 / 快退 / 播放（后台标签）
     └── pip-toggle.js      # 画中画切换（按需注入）
@@ -104,6 +124,16 @@ Set all four commands to **Global** at [`chrome://extensions/shortcuts`](chrome:
 4. Configure shortcuts as above  
 
 Chrome Web Store listing: **coming later**.
+
+### Package for the store
+
+From the project root (Windows PowerShell):
+
+```powershell
+.\package.ps1
+```
+
+This creates `pip-controller-v<version>.zip` (version from `manifest.json`) ready to upload to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole). ZIP files are gitignored. For local development, use **Load unpacked** on the project folder—you do not need to run the script unless you are publishing.
 
 ### Popup
 
