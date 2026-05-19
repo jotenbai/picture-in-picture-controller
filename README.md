@@ -27,40 +27,22 @@
 
 ## 安装
 
-### 从源码安装（推荐）
+### 推荐：Chrome 网上应用店
+
+在 Chrome / Edge 等 Chromium 浏览器中安装：
+
+**[画中画控制器 (PiP Controller) — Chrome 网上应用店](https://chromewebstore.google.com/detail/%E7%94%BB%E4%B8%AD%E7%94%BB%E6%8E%A7%E5%88%B6%E5%99%A8-pip-controller/phnofgcdnmppllkfnejmjkjjdninbkha)**
+
+安装后按下方 [首次设置](#首次设置) 配置快捷键。
+
+### 从源码安装
 
 1. 克隆或下载本仓库  
    `git clone https://github.com/jotenbai/picture-in-picture-controller.git`
-2. 打开 Chrome（或 Edge 等 Chromium 浏览器）→ `chrome://extensions`
+2. 打开 `chrome://extensions`
 3. 开启右上角 **开发者模式**
 4. 点击 **加载已解压的扩展程序**，选择本项目文件夹（含 `manifest.json` 的目录）
-5. 按下方 [首次设置](#首次设置) 配置快捷键
-
-### Chrome 网上应用店
-
-尚未上架。上架后会在本 README 补充商店链接。
-
-### 打包 ZIP（提交商店用）
-
-在项目根目录执行（Windows PowerShell）：
-
-```powershell
-.\package.ps1
-```
-
-会生成 `pip-controller-v<版本号>.zip`（版本号取自 `manifest.json`），内含上架所需的全部运行文件；`manifest.json` 位于 ZIP 根目录。将 ZIP 上传到 [Chrome 开发者控制台](https://chrome.google.com/webstore/devconsole) 即可。
-
-若提示无法运行脚本，可使用：
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\package.ps1
-```
-
-生成的 `*.zip` 已列入 `.gitignore`，不会提交到 Git。本地开发仍用 **加载已解压的扩展程序** 指向项目根目录，无需先打 ZIP。
-
-### 关于 `.crx` 打包
-
-可在 `chrome://extensions` 的开发者模式下「打包扩展程序」生成 `.crx`，但 Chrome 已限制普通用户从外部安装 CRX。公开发布请优先使用上方的 `package.ps1` 生成 ZIP 并提交 Chrome 网上应用店。
+5. 按 [首次设置](#首次设置) 配置快捷键
 
 ## 首次设置
 
@@ -72,12 +54,19 @@ powershell -ExecutionPolicy Bypass -File .\package.ps1
 
 点击扩展图标可打开弹窗，查看说明、切换语言、修改快进 / 快退秒数。
 
+## 已知限制
+
+### 画中画贴底时，再次打开可能上移
+
+用 `Alt+W` 关闭后再打开画中画时，**横坐标与窗口大小**通常会与上次一致；若你把窗口贴在**屏幕底部**，再次打开时 **Y 轴可能整体上移**，与底边/任务栏之间留出一段空隙。贴在**屏幕顶部**时，一般不会出现此现象。
+
+这是 **Chrome / 系统** 在重新创建视频画中画窗口时的摆放策略（底部安全边距、避免遮挡任务栏等），**不是**本扩展改动了位置。扩展**无法**读取或设置画中画窗口的坐标，因此不能实现「恢复上次贴底位置」。若需要贴底，可在再次打开后手动拖到屏幕底边；同一会话内有时会保持，但不保证每次关开都一致。
+
 ## 项目结构
 
 ```
 ├── manifest.json          # 扩展配置
 ├── background.js          # 快捷键与标签页调度
-├── package.ps1            # 打包 ZIP（Chrome 商店上传）
 ├── popup.html / popup.js  # 弹窗界面
 ├── popup-i18n.js          # 弹窗文案（中 / 日 / 英）
 ├── icons/                 # 16 / 32 / 48 / 128 图标
@@ -97,13 +86,20 @@ powershell -ExecutionPolicy Bypass -File .\package.ps1
 
 ## 许可证
 
-[MIT](LICENSE)
+[MIT](LICENSE) · [Privacy Policy](PRIVACY.md)
 
 ---
 
 ## English
 
 Following a tutorial while you work in another app? You often need to pause—but that means switching to the browser, pressing pause, switching back. **PiP Controller** uses global hotkeys to control Picture-in-Picture and playback on **YouTube** and **Bilibili** from whatever window you're in, so you don't break your flow.
+
+### Features
+
+- Control PiP and playback in the background: toggle PiP, play/pause, seek forward/back
+- Works on **YouTube** and **bilibili** (`youtube.com`, `bilibili.com`)
+- Keeps working after you switch to another app (shortcuts must be set to **Global**)
+- Popup UI in Chinese, Japanese, and English; configurable seek step (1–120 seconds, default 5)
 
 ### Default shortcuts
 
@@ -114,27 +110,63 @@ Following a tutorial while you work in another app? You often need to pause—bu
 | `Alt+S` | Pause / play |
 | `Alt+D` | Seek forward |
 
-Set all four commands to **Global** at [`chrome://extensions/shortcuts`](chrome://extensions/shortcuts). Chrome reserves `Alt+D` for the address bar—you may need to bind “Seek forward” manually.
+Chrome reserves `Alt+D` for the address bar—“Seek forward” may show as unset until you bind it manually. The extension cannot default shortcuts to **Global** in code; set all four commands to **Global** at [`chrome://extensions/shortcuts`](chrome://extensions/shortcuts).
 
-### Install from source
+### Install
 
-1. Clone this repo  
-2. Open `chrome://extensions` → enable **Developer mode**  
-3. **Load unpacked** → select the project folder  
-4. Configure shortcuts as above  
+#### Recommended: Chrome Web Store
 
-Chrome Web Store listing: **coming later**.
+**[Picture-in-Picture Controller (PiP Controller) on the Chrome Web Store](https://chromewebstore.google.com/detail/%E7%94%BB%E4%B8%AD%E7%94%BB%E6%8E%A7%E5%88%B6%E5%99%A8-pip-controller/phnofgcdnmppllkfnejmjkjjdninbkha)**
 
-### Package for the store
+After installing, complete [First-time setup](#first-time-setup) below.
 
-From the project root (Windows PowerShell):
+#### From source
 
-```powershell
-.\package.ps1
+1. Clone this repo: `git clone https://github.com/jotenbai/picture-in-picture-controller.git`
+2. Open `chrome://extensions` → enable **Developer mode**
+3. **Load unpacked** → select the project folder (contains `manifest.json`)
+4. Complete [First-time setup](#first-time-setup)
+
+### First-time setup
+
+1. Open [`chrome://extensions/shortcuts`](chrome://extensions/shortcuts)
+2. Find **PiP Controller** and set all four commands to **Global**
+3. If “Seek forward” is unset, bind `Alt+D` manually (or choose another shortcut)
+4. Open a video on YouTube or bilibili and leave that tab open
+5. Switch to another app—hotkeys should still control the video
+
+Click the extension icon for in-popup help, language (ZH / JA / EN), and seek-step settings.
+
+### Known limitations
+
+#### PiP near the bottom may shift up after reopen
+
+When you close PiP with `Alt+W` and open it again, **horizontal position and size** usually match the previous session. If you had docked the window near the **bottom** of the screen, the **vertical position may move up**, leaving a gap above the taskbar. Docking near the **top** typically does not show this behavior.
+
+This comes from **Chrome / OS** placement when recreating the video PiP window (bottom safe area, taskbar avoidance, etc.), not from this extension moving the window. Extensions cannot read or set PiP window coordinates, so “restore last bottom position” is not possible. You can drag the window to the bottom again after reopening; Chrome may remember within the same session, but it is not guaranteed on every toggle.
+
+### Project structure
+
+```
+├── manifest.json
+├── background.js
+├── popup.html / popup.js
+├── popup-i18n.js
+├── icons/
+└── content/
+    ├── bridge.js
+    └── pip-toggle.js
 ```
 
-This creates `pip-controller-v<version>.zip` (version from `manifest.json`) ready to upload to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole). ZIP files are gitignored. For local development, use **Load unpacked** on the project folder—you do not need to run the script unless you are publishing.
+### Permissions
 
-### Popup
+- `scripting`, `tabs`, `storage`: inject scripts, remember the media tab, save user settings
+- Host access: `*.youtube.com` and `*.bilibili.com` only
 
-Popup UI in Chinese, Japanese, and English; configurable seek step (1–120 seconds, default 5).
+### Feedback
+
+[GitHub Issues](https://github.com/jotenbai/picture-in-picture-controller/issues)
+
+### License
+
+[MIT](LICENSE) · [Privacy Policy](PRIVACY.md)
