@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "画中画控制器 (PiP Controller)",
-  "version": "1.0",
-  "description": "用快捷键控制 YouTube / Bilibili 画中画：弹出/关闭、暂停、快进/快退。",
+  "name": "PiP Controller",
+  "version": "1.1",
+  "description": "Global hotkeys for YouTube & Bilibili picture-in-picture: toggle, pause/play, skip back/forward. Control video without focusing the browser.",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
